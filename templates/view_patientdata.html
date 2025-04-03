@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referred Patients</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/view_patientdata.css') }}">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('upload_patient_data') }}">Upload Patient Data</a></li>
+            <li><a href="{{ url_for('analyse_patient_data') }}">Analyse Patient Data</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('help') }}">Help</a></li>
+
+        {% if 'user' in session %}
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+        {% endif %}
+
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Referred Patients</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>BMI</th>
+                    <th>Oxygen Flow Rate</th>
+                    <th>Feed Volume</th>
+                    <th>Dietitian Referral</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+    fetch("/patients/referred")
+      .then(response => response.json())
+      .then(patients => {
+        const tbody = document.querySelector("table tbody");
+        tbody.innerHTML = "";
+
+        patients.forEach(p => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${p.encounterId}</td>
+            <td>${p.bmi ?? "-"}</td>
+            <td>${p.oxygen_flow_rate ?? "-"}</td>
+            <td>${p.feed_vol ?? "-"}</td>
+            <td>
+              ${p.referral 
+                ? '<span style="color: red; font-weight: bold;">Referral Needed</span>' 
+                : p.watch_flag 
+                  ? '<span style="color: orange; font-weight: bold;">Watch Closely</span>' 
+                  : '-'}
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      })
+      .catch(err => {
+        console.error("Failed to fetch referred patients", err);
+      });
+    </script>
+</body>
+</html>

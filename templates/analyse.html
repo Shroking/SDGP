@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse Patient Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/analyse.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Analyse Patient Data</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('view_patient_data') }}">View Patient Data</a></li>
+                <li><a href="{{ url_for('upload_patient_data') }}">Upload Patient Data</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('help') }}">Help</a></li>
+
+            {% if 'user' in session %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+
+            </ul>
+        </nav>
+    </header>
+
+    <section class="analysis-section">
+        <h2>Data Analysis</h2>
+        <p>Select an analysis type to view insights from the patient data:</p>
+        
+        <select id="analysis-type">
+            <option value="trend">Trends Over Time</option>
+            <option value="bmi">Average BMI</option>
+            <option value="co2">Average End Tidal CO2</option>
+        </select>
+        
+        <button id="analyze-btn">Analyze Data</button>
+
+        <div id="analysis-results">
+            <h3>Analysis Results:</h3>
+            <canvas id="analysis-chart"></canvas>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/analyse.js') }}"></script>
+</body>
+</html>

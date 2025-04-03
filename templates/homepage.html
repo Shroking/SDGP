@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCU Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>CCU Patient Dashboard</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('view_patient_data') }}">View Patient Data</a></li>
+                <li><a href="{{ url_for('upload_patient_data') }}">Upload Patient Data</a></li>
+                <li><a href="{{ url_for('analyse_patient_data') }}">Analyse Patient Data</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('help') }}">Help</a></li>
+
+            {% if 'user' in session %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+
+            </ul>
+        </nav>
+        
+    </header>
+    
+    
+    <section id="all-patients">
+        <h2>All Patients</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient ID</th>
+                    <th>End Tidal CO2</th>
+                    <th>Feed Volume</th>
+                    <th>Oxygen Flow Rate</th>
+                    <th>BMI</th>
+                    <th>Referral</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+    
+    <section id="patients-without-data">
+        <h2>Patients Without Sufficient Data</h2>
+        <ul>
+        </ul>
+    </section>
+    
+    <section id="average-data">
+        <h2>Average Patient Data</h2>
+        <p><strong>Average End Tidal CO2:</strong> <span id="avg-co2"></span></p>
+        <p><strong>Average Feed Volume:</strong> <span id="avg-feed"></span></p>
+        <p><strong>Average Oxygen Flow Rate:</strong> <span id="avg-oxygen"></span></p>
+        <p><strong>Average BMI:</strong> <span id="avg-bmi"></span></p>
+    </section>
+
+    <section id="patient-data-chart">
+        <h2>Patient Data Analysis (Bar Chart)</h2>
+        <canvas id="patientChart" width="400" height="200"></canvas>
+    </section>
+
+    <script src="homepage.js"></script>
+    <script>
+        const ctx = document.getElementById('patientChart').getContext('2d');
+        const patientChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['View Patient Data', 'Upload Patient Data', 'Analyse Patient Data', 'About', 'Help'],
+                datasets: [{
+                    label: 'Patient Data Interaction Frequency',
+                    data: [12, 19, 7, 5, 3], 
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

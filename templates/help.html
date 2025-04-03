@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - CCU Patient Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+
+</head>
+<body>
+    <header>
+        <h1>Help - CCU Patient Dashboard</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('view_patient_data') }}">View Patient Data</a></li>
+                <li><a href="{{ url_for('upload_patient_data') }}">Upload Patient Data</a></li>
+                <li><a href="{{ url_for('analyse_patient_data') }}">Analyse Patient Data</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+
+            {% if 'user' in session %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+            
+            </ul>
+        </nav>
+        
+        </nav>
+    </header>
+
+    <section class="help-section">
+        <h2>How to Use the CCU Patient Dashboard</h2>
+
+        <h3>1. View Patient Data</h3>
+        <p>
+            To view patient data, go to the "View Patient Data" section from the dashboard. Here you can see a detailed list of all patients.
+        </p>
+
+        <h3>2. Upload Patient Data</h3>
+        <p>
+            To upload patient data, go to the "Upload Patient Data" section. You will need to upload a file containing patient information. Make sure the data is in the correct format. After uploading, the data will be processed and added to the system.
+        </p>
+
+        <h3>3. Analyse Patient Data</h3>
+        <p>
+            This page provides tools to generate insights from patient data. The system automatically calculates averages and identifies patients with missing or incomplete data.
+        </p>
+
+        <h3>4. Frequently Asked Questions (FAQ)</h3>
+        <ul>
+            <li><strong>What formats are supported for uploading patient data?</strong>
+                <p> The system currently supports CSV and Excel formats.</p>
+            </li>
+            <li><strong>How do I analyze the data?</strong>
+                <p>After you load patient data, you can view trends, averages, and statistics in the "Analyze Patient Data" section.</p>
+            </li>
+            <li><strong>How can I contact support?</strong>
+                <p>If you need help or encounter any issues, please reach out to us via email at <a href="mailto:utkudemirel07@hotmail.com">utkudemirel07@hotmail.com</a>.</p>
+            </li>
+        </ul>
+
+        <h3>5. Additional Support</h3>
+        <p>
+            For additional questions or technical support, please refer to the documentation available on the website or contact our support team.
+        </p>
+    </section>
+
+    <script src="help.js"></script>
+</body>
+</html>
