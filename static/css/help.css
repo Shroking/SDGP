@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4ac;
+}
+
+header {
+    background-color: #f4f4f4ac;
+    padding: 10px 0;
+    text-align: center;
+}
+
+h1 {
+    color: rgb(0, 0, 0);
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #ff0000a1;
+    padding: 10px 0;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #b30000;
+    border-radius: 5px;
+}
+
+/* Help Section */
+.help-section {
+    width: 70%;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.help-section h2 {
+    text-align: center;
+    color: #333;
+}
+
+.help-section p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.help-section ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.help-section li {
+    margin: 10px 0;
+    color: #555;
+}
+
+.help-section a {
+    color: #ff0000a1;
+    text-decoration: none;
+}
+
+.help-section a:hover {
+    text-decoration: underline;
+}
