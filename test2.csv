@@ -1,0 +1,14 @@
+encounterId,bmi,feed_vol,oxygen_flow_rate,resp_rate
+
+risky_1,17.2,650,12.0,26
+risky_2,21.3,900,2.0,28
+borderline_1,19.2,850,6.0,19
+risky_3,16.5,850,11,24
+healthy_1,19.5,845,2.5,15.5
+risky_4,15.5,700,11.0,24
+borderline_2,21,700,3.0,20
+risky_5,17.0,700,9,23
+healthy_2,21.5,850,3.0,17
+healthy_3,20.0,840,3.0,16.5
+borderline_3,18.8,800,4.0,21
+healthy_4,22.0,900,2.0,16
